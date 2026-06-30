@@ -1,4 +1,5 @@
 import express from "express";
+import http from "http";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
@@ -8,6 +9,8 @@ import morgan from "morgan";
 
 import connectDB from "./src/config/db.js";
 import errorMiddleware from "./src/middleware/errorMiddleware.js";
+
+import { initializeSocket } from "./src/sockets/socketServer.js";
 
 import healthRoutes from "./src/routes/healthRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
@@ -20,41 +23,46 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true
-}));
+// Create HTTP Server
+const server = http.createServer(app);
+
+// Middleware
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL,
+        credentials: true,
+    })
+);
 
 app.use(helmet());
-
 app.use(compression());
-
 app.use(morgan("dev"));
-
 app.use(cookieParser());
-
 app.use(express.json());
-
 app.use(express.urlencoded({ extended: true }));
 
+// Root Route
 app.get("/", (req, res) => {
     res.json({
         success: true,
-        message: "Welcome to IntellMeet API"
+        message: "Welcome to IntellMeet API",
     });
 });
 
+// API Routes
 app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/meetings", meetingRoutes);
 app.use("/api/v1/chat", chatRoutes);
 
+
+initializeSocket(server);
+
 app.use(errorMiddleware);
 
-const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+const PORT = process.env.PORT;
 
-    console.log(`Server running on port ${PORT}`);
-
+server.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
 });
