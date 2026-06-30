@@ -16,6 +16,7 @@ import healthRoutes from "./src/routes/healthRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import meetingRoutes from "./src/routes/meetingRoutes.js";
 import chatRoutes from "./src/routes/chatRoutes.js";
+import aiRoutes from "./src/routes/aiRoutes.js";
 
 dotenv.config();
 
@@ -54,6 +55,7 @@ app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/meetings", meetingRoutes);
 app.use("/api/v1/chat", chatRoutes);
+app.use("/api/v1/ai", aiRoutes);
 
 
 initializeSocket(server);

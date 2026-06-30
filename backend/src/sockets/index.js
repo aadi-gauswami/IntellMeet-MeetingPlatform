@@ -4,20 +4,23 @@ import registerPresenceSocket from "./presenceSocket.js";
 import registerSignalingSocket from "./signalingSocket.js";
 import registerScreenShareSocket from "./screenShareSocket.js";
 import registerRecordingSocket from "./recordingSocket.js";
+import registerAISocket from "./aiSocket.js";
 
 const registerSocketHandlers = (io, socket) => {
 
-  registerMeetingSocket(io, socket);
+    registerMeetingSocket(io, socket);
 
-  registerChatSocket(io, socket);
+    registerChatSocket(io, socket);
 
-  registerPresenceSocket(io, socket);
+    registerPresenceSocket(io, socket);
 
-  registerSignalingSocket(io, socket);
+    registerSignalingSocket(io, socket);
 
-  registerScreenShareSocket(io, socket);
+    registerScreenShareSocket(io, socket);
 
-  registerRecordingSocket(io, socket);
+    registerRecordingSocket(io, socket);
+
+    registerAISocket(io, socket);
 
 };
 

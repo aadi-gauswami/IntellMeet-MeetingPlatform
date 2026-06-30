@@ -93,9 +93,35 @@ export const EVENTS = {
   },
 
   AI: {
+
+    CHAT: "ai-chat",
+
+    CHAT_RESPONSE: "ai-chat-response",
+
+    ERROR: "ai-error",
+
+    GENERATE_SUMMARY: "generate-summary",
+
+    SUMMARY_PROCESSING: "summary-processing",
+
+    SUMMARY_GENERATED: "summary-generated",
+
+    GENERATE_ACTION_ITEMS: "generate-action-items",
+
+    ACTION_ITEMS_GENERATED: "action-items-generated",
+
+    GENERATE_INSIGHTS: "generate-insights",
+
+    INSIGHTS_GENERATED: "insights-generated",
+
     TRANSCRIPT_UPDATE: "transcript-update",
+
+    TRANSCRIPT_UPDATED: "transcript-updated",
+
     SUMMARY_READY: "summary-ready",
-    ACTION_ITEM_CREATED: "action-item-created",
+
+    ACTION_ITEM_CREATED: "action-item-created"
+
   },
 
   NOTIFICATION: {

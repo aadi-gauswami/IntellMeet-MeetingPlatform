@@ -31,7 +31,7 @@ export const initializeSocket = (httpServer) => {
 
     socket.on(EVENTS.CONNECTION.DISCONNECT, (reason) => {
       console.log(
-        `❌ User Disconnected: ${socket.user.name}`
+        `User Disconnected: ${socket.user.name}`
       );
 
       console.log("Reason:", reason);
